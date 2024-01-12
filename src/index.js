@@ -1,13 +1,42 @@
+import './index.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+import Home from './Pages/Home';
+import Product from './Pages/Product';
+import ShoppingBag from './Pages/ShoppingBag';
+
+import { Provider } from 'react-redux';
+import { store } from './store';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/product/:id",
+    element: <Product />
+  },
+  {
+    path: "/shoppingbag",
+    element: <ShoppingBag />
+  }
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store} >
+     <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
 
