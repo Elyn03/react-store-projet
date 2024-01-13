@@ -1,20 +1,21 @@
-import { useGetProductsQuery, useGetCommentsQuery } from "../Services/API"
+import { useGetProductsQuery, useGetCommentsQuery, useCreateCommentMutation } from "../Services/API"
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useParams } from "react-router-dom"
+import Header from '../Components/Header'
+import { useCart } from "../Providers/CartContext"
 
 export default function() {
 
    let { id } = useParams()
    let { data, isFetching } = useGetProductsQuery()
-   // let [ createComment, { isLoading } ] = useCreateCommentMutation() 
+   let [ createComment, { isLoading } ] = useCreateCommentMutation() 
 
    return <div>
-      <header className="App-header">        
-         <Link to="/">Retour</Link>
-      </header>
+      <Header />
 
       <h1>Product n°{ id }</h1>
+
       {
          isFetching ? <p>Pas de products</p> : <Home>
          <ProductsList />
@@ -23,10 +24,11 @@ export default function() {
 
       <h1>Commentaires :</h1>
 
-      {/* <p>Créer un commentaire</p>
+      <p>Créer un commentaire</p>
       <button onClick={()=> {
-      createComment({product_id : `${16}`, username: "Elyn", comment: "Tomate bio"})
-    }}>Create Comment</button> */}
+         createComment(id,{username: "Didi", comment: "Tomate bio"})
+      }}>Create Comment</button>
+
       <ListComments />
    </div>
 }
@@ -61,6 +63,7 @@ function ListComments() {
 function ProductsList() {
 
    let { id } = useParams()
+   let { cart, addToCart } = useCart()
 
    let { data, isFetching } = useGetProductsQuery()
  
@@ -79,6 +82,9 @@ function ProductsList() {
                <p>Mesure : {product.measure}</p>
                <p>Prix au poids : {product.price_per_measure}</p>
             </div>
+            <button onClick={() => {
+            addToCart(`${product.title}`)
+        }}> Add to cart </button>
          </Home> : <p></p>
       }
          
@@ -88,7 +94,7 @@ function ProductsList() {
  }
  
 const Home = styled.div`
-   padding: 10px 0;
+   padding: 10px 40px;
    display: flex;
    flex-direction: column;
    flex-wrap: wrap;

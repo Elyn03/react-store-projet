@@ -1,15 +1,16 @@
 import { useGetProductsQuery } from "../Services/API"
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import Header from '../Components/Header'
+
+import { useCart } from "../Providers/CartContext"
 
 export default function () {
 
   let { data, isFetching } = useGetProductsQuery()
 
   return <div>
-    <header className="App-header">        
-         <Link to="/">Home</Link>
-      </header>
+    <Header />
 
     <h1>Products</h1>
     {
@@ -22,6 +23,8 @@ export default function () {
 
 function ProductsList() {
 
+  let { cart, addToCart } = useCart()
+
   let { data, isFetching } = useGetProductsQuery()
 
   return data.map((product) => {
@@ -29,13 +32,16 @@ function ProductsList() {
         <ImgCard src={product.image} />
         {product.title}
         <Link to={`/product/${product.id}`}>Plus de détails</Link>
+        <button onClick={() => {
+            addToCart(`${product.title}`)
+        }}> Add to cart </button>
     </Card>
   })
 
 }
 
 const Home = styled.div`
-  padding: 10px 0;
+  padding: 20px;
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
@@ -43,8 +49,8 @@ const Home = styled.div`
 
 const Card = styled.div`
   height: 400px;
-  width: 300px;
-  padding: 10px 20px;
+  width: 400px;
+  padding: 30px 20px;
   display:flex;
   align-item: center;
   flex-direction: column;
@@ -54,4 +60,4 @@ const Card = styled.div`
 
 const ImgCard = styled.img`
   height: 90%;
-  object-fit: cover`
+  object-fit: contain;`

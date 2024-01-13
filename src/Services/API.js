@@ -14,15 +14,15 @@ export const productAPI = createApi({
          method: "GET",
          providesTags: ["comments"] // On set le tag pour Articles
       }),
-      // createComment: builder.mutation({
-      //    query: (id, data) => ({
-      //      url: `/product/${id}/comments`,
-      //      method: "POST",
-      //      body: data
-      //    }),
-      //    invalidatesTags: ["comments"] // On invalide le tag
-      //  })
+      createComment: builder.mutation({
+         query: (id, data) => ({
+           url: `/products/${id}/comments`,
+           method: "POST",
+           body: data
+         }),
+         invalidatesTags: ["comments"] // On invalide le tag
+       })
    }),
 })
 
-export const { useGetProductsQuery, useGetCommentsQuery } = productAPI
+export const { useGetProductsQuery, useGetCommentsQuery, useCreateCommentMutation } = productAPI
