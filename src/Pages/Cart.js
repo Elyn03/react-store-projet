@@ -15,14 +15,22 @@ export default function() {
    return <div>
       <Header />
 
-      <button onClick={() => {
-            clearCart()
-      }}> Clear cart </button>
+      <Home>
+         <button onClick={() => {
+               clearCart()
+         }}> Clear cart </button>
 
-      Articles {id}
-      {cart.map((product) => {
-            return <h2>{product}</h2>
-      })}
+         <h1>Articles</h1>
+
+         <ListCart>{cart.map((product) => {
+               return <Product>
+                  <ImgCard src={product[0]}/>
+                  <p>{product[1]}</p>
+                  <p>{product[2]}</p>
+               </Product>
+         })}</ListCart>
+         
+      </Home>
 
       <Foot />
    </div>
@@ -30,12 +38,22 @@ export default function() {
 }
  
 const Home = styled.div`
-   padding: 10px 0;
-   display: flex;
-   flex-direction: column;
-   flex-wrap: wrap;
-   justify-content: space-around;`
- 
- 
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;`
+
 const ImgCard = styled.img`
    object-fit: cover`
+
+const ListCart = styled.div`
+   padding: 20px;
+   display: grid;
+   gap: 10px;
+   grid-column: 1;`
+
+const Product = styled.div`
+   padding: 20px;
+   display: flex;
+   justify-content: space between;
+   border: 2px solid #9a9a9a;`

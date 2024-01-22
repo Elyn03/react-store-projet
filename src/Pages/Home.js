@@ -39,7 +39,7 @@ function ProductsList() {
         <div style={{display: "flex"}}>
           <span>{product.price} €</span>
           <button onClick={() => {
-              addToCart(`${product.title}`)
+            addToCart([`${product.image}`, `${product.title}`, `${product.price}`])
           }}> Add to cart </button>
         </div>
         <Link style={{color: "black", textDecoration: "none"}} to={`/product/${product.id}`}>{product.title}</Link>

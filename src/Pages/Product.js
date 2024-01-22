@@ -35,18 +35,18 @@ export default function() {
             <div style={{padding: "10px 0", display: "flex", flexDirection: "column", gap: "40px"}}>
             <Form>
                <input style={{padding: "5px", border: "none", borderBottom: "2px solid #000"}} placeholder="Username" value={username} onChange={(event) => {
-                     setUsername(event.target.value)
-                  }}/>
+                  setUsername(event.target.value)
+               }}/>
             
                <textarea style={{padding: "5px", border: "none", "&:focus": {outline: "none"}}} rows="2" value={comment} onChange={(event) => {
-                     setComment(event.target.value)
-                  }}/>
+                  setComment(event.target.value)
+               }}/>
                            
-               <button onClick={()=> {
-                  createComment({ product_id: `${id}`, username: `${username}`, comment: `${comment}`})
-               }}>
-                  Post
-               </button>
+               <button onClick={() => {
+                  createComment(id, {product_id: "18", username: "Name", comment: "Miam"})
+                  setUsername('')
+                  setComment('')
+               }}>Post</button>
             </Form>
 
             <ListComments />
@@ -84,7 +84,7 @@ function TheProduct() {
                { product.price_per_measure ? <p>Price per measure : {product.price_per_measure}</p> : <p>Price per measure : /</p> }
             
             <button onClick={() => {
-               addToCart(`${product.title}`)
+               addToCart(`${product.image}`, `${product.title}`, `${product.price}`)
             }}> Add to cart </button>
             </Info>
          </Card> : <p></p>
