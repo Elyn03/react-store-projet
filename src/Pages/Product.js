@@ -77,15 +77,15 @@ function TheProduct() {
             <Info>
                <p>Name : {product.title}</p>
                <p>Date : {product.date}</p>
-               <p>Price : {product.price} €</p>
+               <p>Price : {product.price}€</p>
                <p>Quantity : {product.quantity}</p>
                { product.unit_of_measurement ? <p>Unit of measurement : {product.unit_of_measurement}</p> : <p>Unit of measurement : /</p> }
                { product.measure ? <p>Measure : {product.measure}</p> : <p>Measure : /</p> }
                { product.price_per_measure ? <p>Price per measure : {product.price_per_measure}</p> : <p>Price per measure : /</p> }
             
-            <button onClick={() => {
-               addToCart(`${product.image}`, `${product.title}`, `${product.price}`)
-            }}> Add to cart </button>
+            <Button onClick={() => {
+               addToCart([`${product.id}`, `${product.image}`, `${product.title}`, `${product.price}`])
+            }}> Add to cart </Button>
             </Info>
          </Card> : <p></p>
       }
@@ -153,4 +153,19 @@ const TheComment = styled.div`
    display: flex;
    flex-direction: column;
    padding: 10px;
-   border: 2px solid #7692A7;`
+   border: 2px solid #7692A7;
+`
+
+const Button = styled.button`
+   padding: 10px;
+   border: none;
+   background-color: #F1E4CA;
+   color: #060D28;
+   border-radius: 5px;
+   border: 2px solid white;
+
+   &:hover {
+      background-color: #060D28;
+      color: #F1E4CA;
+   }
+`

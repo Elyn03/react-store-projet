@@ -6,8 +6,8 @@ function Header() {
    let { cart, addToCart } = useCart()
 
    return <Head>
-      <Link style={{color: "black", textDecoration: "none"}} to="/">Home</Link>
-      <Link style={{color: "black", textDecoration: "none"}} to="/cart">Cart : {cart.length}</Link>
+      <Link style={{color: "#F1E4CA", textDecoration: "none"}} to="/">Home</Link>
+      <Link style={{color: "#F1E4CA", textDecoration: "none"}} to="/cart">Cart : {cart.length}</Link>
    </Head>
 }
 
@@ -17,7 +17,9 @@ const Head = styled.header`
    position: sticky;
    top: 0;
    display: flex;
-   background-color: #9caeb3;
+   background-color: #060D28;
+   color: #F1E4CA;
+   border-bottom: 2px solid #0B1E3B;
    justify-content: space-between;
    align-items: center;`
 

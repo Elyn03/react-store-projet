@@ -23,10 +23,12 @@ export default function() {
          <h1>Articles</h1>
 
          <ListCart>{cart.map((product) => {
+            console.log(product);
                return <Product>
-                  <ImgCard src={product[0]}/>
-                  <p>{product[1]}</p>
+                  <ImgCard style={{height: "100%", width: "auto"}} src={product[1]}/>
                   <p>{product[2]}</p>
+                  <p>{product[3]}€</p>
+                  <Link style={{color: "#010822", textDecoration: "none"}} to={`/product/${product[0]}`}>See more</Link>
                </Product>
          })}</ListCart>
          
@@ -48,12 +50,14 @@ const ImgCard = styled.img`
 
 const ListCart = styled.div`
    padding: 20px;
-   display: grid;
-   gap: 10px;
-   grid-column: 1;`
+   display: flex;
+   flex-direction: column;
+   gap: 20px;`
 
 const Product = styled.div`
    padding: 20px;
+   height: 75px;
    display: flex;
-   justify-content: space between;
-   border: 2px solid #9a9a9a;`
+   justify-content: space-between;
+   align-items: center;
+   background-color: white;`
