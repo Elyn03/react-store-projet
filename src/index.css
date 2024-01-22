@@ -5,6 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-color: #010822;
+  color: #fff; */
+  /* background-image: url('Assets/midnight-background.jpg');
+  background-attachment: fixed;
+  background-size: cover; */
 }
 
 code {

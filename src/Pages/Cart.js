@@ -3,29 +3,30 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useParams } from "react-router-dom"
 import Header from '../Components/Header'
+import Foot from '../Components/Footer'
 import { useCart } from "../Providers/CartContext"
 
 
 export default function() {
 
    let { id } = useParams()
-   let { cart, addToCart, clearCart } = useCart()    
-
-   let { data, isFetching } = useGetProductsQuery()
-   let [ createComment, { isLoading } ] = useCreateCommentMutation() 
+   let { cart, clearCart } = useCart()    
 
    return <div>
       <Header />
 
       <button onClick={() => {
             clearCart()
-        }}> Clear cart </button>
+      }}> Clear cart </button>
 
       Articles {id}
-        {cart.map((product) => {
+      {cart.map((product) => {
             return <h2>{product}</h2>
-        })}
+      })}
+
+      <Foot />
    </div>
+   
 }
  
 const Home = styled.div`
