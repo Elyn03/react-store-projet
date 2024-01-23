@@ -39,18 +39,16 @@ export default function() {
                value={username}
                onChange={(event) => {
                   setUsername(event.target.value)
-               }} required />
+               }} />
             
                <textarea style={{padding: "5px", border: "none", "&:focus": {outline: "none"}}}
                   rows="2"
                   value={comment}
                   onChange={(event) => {
                      setComment(event.target.value)
-                  }} required />
-                           
+                  }} />
                <button onClick={() => {
-                  console.log("jjjjjjj");
-                  createComment(id, username, comment)
+                  createComment({ id, username, comment })
                   setUsername('')
                   setComment('')
                }}>Post</button>
@@ -117,10 +115,11 @@ function TheProduct() {
    return (
       <Comment>
          {data.map((comment) => (
-            <TheComment key={comment.id}>
-               <h3>{comment.username}</h3>
-               <span>{comment.comment}</span>
-            </TheComment>
+            (comment.id !== 40 && comment.product_id !== 16) ? 
+               <TheComment key={comment.id}>
+                  <h3>{comment.username}</h3>
+                  <span>{comment.comment}</span>
+               </TheComment> : <p></p>
          ))}
       </Comment>
    );
