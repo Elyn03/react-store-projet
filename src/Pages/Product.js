@@ -34,16 +34,23 @@ export default function() {
             <h1>Comments :</h1>
             <div style={{padding: "10px 0", display: "flex", flexDirection: "column", gap: "40px"}}>
             <Form>
-               <input style={{padding: "5px", border: "none", borderBottom: "2px solid #000"}} placeholder="Username" value={username} onChange={(event) => {
+               <input style={{padding: "5px", border: "none", borderBottom: "2px solid #000"}}
+               placeholder="Username"
+               value={username}
+               onChange={(event) => {
                   setUsername(event.target.value)
-               }}/>
+               }} required />
             
-               <textarea style={{padding: "5px", border: "none", "&:focus": {outline: "none"}}} rows="2" value={comment} onChange={(event) => {
-                  setComment(event.target.value)
-               }}/>
+               <textarea style={{padding: "5px", border: "none", "&:focus": {outline: "none"}}}
+                  rows="2"
+                  value={comment}
+                  onChange={(event) => {
+                     setComment(event.target.value)
+                  }} required />
                            
                <button onClick={() => {
-                  createComment(id, {product_id: "18", username: "Name", comment: "Miam"})
+                  console.log("jjjjjjj");
+                  createComment(id, username, comment)
                   setUsername('')
                   setComment('')
                }}>Post</button>
@@ -153,6 +160,7 @@ const TheComment = styled.div`
    display: flex;
    flex-direction: column;
    padding: 10px;
+   border-radius: 5px;
    border: 2px solid #7692A7;
 `
 

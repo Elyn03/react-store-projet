@@ -15,10 +15,10 @@ export const productAPI = createApi({
          providesTags: ["comments"] // On set le tag pour Articles
       }),
       createComment: builder.mutation({
-         query: ({id, data}) => ({
+         query: (id, username, comment) => ({
            url: `products/${id}/comments`,
            method: "POST",
-           body: data
+           body: JSON.stringify({ id, username, comment }),
          }),
          invalidatesTags: ["comments"] // On invalide le tag
        })
