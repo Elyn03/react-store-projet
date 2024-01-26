@@ -1,3 +1,14 @@
+# PROJECT
+
+This project is a Food E-commerce where you can:
+- consult products
+- add a product in your cart
+- consult your cart
+- clear your cart
+- consult products' comments
+- create a comment
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
